@@ -12,6 +12,26 @@ template '/etc/sysstat/sysstat' do
   )
 end
 
+template '/etc/sysstat/sysstat' do
+  source 'sysstat.options.erb'
+  mode 0644
+  owner 'root'
+  group 'root'
+  variables(
+    sar_history: node['sar']['options']['sar_compress']
+  )
+end
+
+template '/etc/sysstat/sysstat' do
+  source 'sysstat.options.erb'
+  mode 0644
+  owner 'root'
+  group 'root'
+  variables(
+    sar_history: node['sar']['options']['sdac_options']
+  )
+end
+
 template '/etc/default/sysstat' do
   source 'sysstat.default.erb'
   mode 0644

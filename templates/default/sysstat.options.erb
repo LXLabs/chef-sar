@@ -7,10 +7,10 @@
 HISTORY=<%= @sar_history %>
 
 # Compress (using gzip or bzip2) sa and sar files older than (in days):
-COMPRESSAFTER=10
+COMPRESSAFTER=<% @sar_compress %>
 
 # Parameters for the system activity data collector (see sadc(8) manual page)
 # which are used for the generation of log files.
 # By default contains the `-S DISK' option responsible for generating disk
 # statisitcs. Use `-S XALL' to collect all available statistics.
-SADC_OPTIONS="-S DISK"
+SADC_OPTIONS="<% @sdac_options %>"
