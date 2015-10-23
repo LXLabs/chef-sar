@@ -2,6 +2,16 @@ package 'sysstat' do
   action :install
 end
 
+template '/etc/sysstat/sysstat' do
+  source 'sysstat.options.erb'
+  mode 0644
+  owner 'root'
+  group 'root'
+  variables(
+    sar_history: node['sar']['options']['sar_history']
+  )
+end
+
 template '/etc/default/sysstat' do
   source 'sysstat.default.erb'
   mode 0644
