@@ -8,27 +8,9 @@ template '/etc/sysstat/sysstat' do
   owner 'root'
   group 'root'
   variables(
-    sar_history: node['sar']['options']['sar_history']
-  )
-end
-
-template '/etc/sysstat/sysstat' do
-  source 'sysstat.options.erb'
-  mode 0644
-  owner 'root'
-  group 'root'
-  variables(
+    sar_history: node['sar']['options']['sar_history'],
+    sdac_options: node['sar']['options']['sdac_options'],
     sar_compress: node['sar']['options']['sar_compress']
-  )
-end
-
-template '/etc/sysstat/sysstat' do
-  source 'sysstat.options.erb'
-  mode 0644
-  owner 'root'
-  group 'root'
-  variables(
-    sdac_options: node['sar']['options']['sdac_options']
   )
 end
 
