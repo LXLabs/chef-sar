@@ -18,7 +18,7 @@ template '/etc/sysstat/sysstat' do
   owner 'root'
   group 'root'
   variables(
-    sar_history: node['sar']['options']['sar_compress']
+    sar_compress: node['sar']['options']['sar_compress']
   )
 end
 
@@ -28,7 +28,7 @@ template '/etc/sysstat/sysstat' do
   owner 'root'
   group 'root'
   variables(
-    sar_history: node['sar']['options']['sdac_options']
+    sdac_options: node['sar']['options']['sdac_options']
   )
 end
 
