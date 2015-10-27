@@ -2,6 +2,21 @@ package 'sysstat' do
   action :install
 end
 
+if
+platform_family?('rhel') && node['platform_version'].to_i == 7
+ '/etc/sysstat/sysstat' do
+  source 'sysstat.options.erb'
+  mode 0644
+  owner 'root'
+  group 'root'
+  variables(
+    sar_history: node['sar']['options']['sar_history'],
+    sdac_options: node['sar']['options']['sdac_options'],
+    sar_compress: node['sar']['options']['sar_compress']
+  )
+end
+
+
 template '/etc/sysstat/sysstat' do
   source 'sysstat.options.erb'
   mode 0644
