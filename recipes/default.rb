@@ -4,7 +4,8 @@ end
 
 if
 platform_family?('rhel') && node['platform_version'].to_i == 7
- '/etc/sysstat/sysstat' do
+do
+  '/etc/sysstat/sysstat' do
   source 'sysstat.options.erb'
   mode 0644
   owner 'root'
@@ -14,6 +15,7 @@ platform_family?('rhel') && node['platform_version'].to_i == 7
     sdac_options: node['sar']['options']['sdac_options'],
     sar_compress: node['sar']['options']['sar_compress']
   )
+end
 end
 
 
