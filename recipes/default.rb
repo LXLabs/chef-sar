@@ -3,8 +3,10 @@ package 'sysstat' do
 end
 
 if platform_family?('rhel')
-  template '/etc/sysconfig/sysstat'
+  template '/etc/sysconfig/sysstat' do
     source 'sysstat.options/erb'
+
+
     mode 0644
     owner 'root'
     group  'root'
@@ -14,7 +16,9 @@ if platform_family?('rhel')
       sar_compress: node['sar']['options']['sar_compress']
     )
   end
+end
 
+if platform_family?('debian')
 template '/etc/sysstat/sysstat' do
   source 'sysstat.options.erb'
   mode 0644
@@ -25,6 +29,7 @@ template '/etc/sysstat/sysstat' do
     sdac_options: node['sar']['options']['sdac_options'],
     sar_compress: node['sar']['options']['sar_compress']
   )
+  end
 end
 
 template '/etc/default/sysstat' do
@@ -47,4 +52,3 @@ template '/etc/cron.d/sysstat' do
   variables(
     run_every_minutes: node['sar']['cron']['run_every_minutes']
   )
-end
