@@ -2,23 +2,12 @@ package 'sysstat' do
   action :install
 end
 
-if platform_family?('rhel')
-  template '/etc/sysconfig/sysstat' do
-    source 'sysstat.options/erb'
 
 
-    mode 0644
-    owner 'root'
-    group  'root'
-    variables(
-      sar_history: node['sar']['options']['sar_history'],
-      sdac_options: node['sar']['options']['sdac_options'],
-      sar_compress: node['sar']['options']['sar_compress']
-    )
-  end
-end
 
-if platform_family?('debian')
+
+case node[:platform]
+  when "ubuntu", "debian"
 template '/etc/sysstat/sysstat' do
   source 'sysstat.options.erb'
   mode 0644
