@@ -2,10 +2,6 @@ package 'sysstat' do
   action :install
 end
 
-
-
-
-
 case node[:platform]
   when "ubuntu", "debian"
 template '/etc/sysstat/sysstat' do
@@ -19,6 +15,7 @@ template '/etc/sysstat/sysstat' do
     sar_compress: node['sar']['options']['sar_compress']
   )
   end
+end
 end
 
 template '/etc/default/sysstat' do
