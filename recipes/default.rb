@@ -2,6 +2,8 @@ package 'sysstat' do
   action :install
 end
 
+
+if platform_family?('debian')
 template '/etc/sysstat/sysstat' do
   source 'sysstat.options.erb'
   mode 0644
@@ -14,6 +16,7 @@ template '/etc/sysstat/sysstat' do
   sar_compress: node['sar']['options']['sar_compress']
 
   )
+end
 end
 
 template '/etc/default/sysstat' do
