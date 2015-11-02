@@ -19,7 +19,7 @@ template '/etc/sysstat/sysstat' do
 end
 end
 
-if platform_family?('centos')
+if platform_family?('rhel')
   template '/etc/sysconfig/sysstat' do
     source 'sysstat.options.erb'
     mode 0644
