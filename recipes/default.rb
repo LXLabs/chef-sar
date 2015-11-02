@@ -19,6 +19,22 @@ template '/etc/sysstat/sysstat' do
 end
 end
 
+if platform_family?('centos')
+  template '/etc/sysconfig/sysstat' do
+    source 'sysstat.options.erb'
+    mode 0644
+    owner 'root'
+    group 'root'
+    variables(
+
+    sar_history: node['sar']['options']['sar_history'],
+    sdac_options: node['sar']['options']['sdac_options'],
+    sar_compress: node['sar']['options']['sar_compress']
+
+    )
+  end
+  end
+
 template '/etc/default/sysstat' do
   source 'sysstat.default.erb'
   mode 0644
