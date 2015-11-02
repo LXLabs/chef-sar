@@ -23,3 +23,4 @@ template '/etc/cron.d/sysstat' do
   variables(
     run_every_minutes: node['sar']['cron']['run_every_minutes']
   )
+end
