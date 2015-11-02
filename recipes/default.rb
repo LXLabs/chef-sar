@@ -2,7 +2,7 @@ package 'sysstat' do
   action :install
 end
 
-template '/etc/sysstat/sysstat'
+template '/etc/sysstat/sysstat' do
   source 'sysstat.options.erb'
   mode 0644
   owner 'root'
